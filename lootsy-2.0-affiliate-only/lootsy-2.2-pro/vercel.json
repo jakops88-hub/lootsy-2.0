@@ -1,0 +1,6 @@
+{
+  "buildCommand": "npm run vercel-build",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "env": { "NODE_VERSION": "20" }
+}
