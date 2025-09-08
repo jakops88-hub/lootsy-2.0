@@ -1,29 +1,33 @@
 {
-  "name": "lootsy-2-2-pro",
-  "version": "1.0.0",
+  "name": "lootsy",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "vercel-build": "next build",
-    "seed": "node scripts/seed.js"
+    "lint": "next lint",
+    "postinstall": "prisma generate",
+    "vercel-build": "next build"
   },
   "dependencies": {
-    "@supabase/supabase-js": "2.47.10",
     "next": "14.2.5",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "zod": "3.23.8"
+    "tailwindcss": "3.4.7",
+    "postcss": "8.4.41",
+    "autoprefixer": "10.4.20",
+    "@supabase/supabase-js": "2.45.4",
+    "@radix-ui/react-icons": "1.3.0",
+    "lucide-react": "0.453.0",
+    "zod": "3.23.8",
+    "stripe": "16.5.0",
+    "clsx": "2.1.1",
+    "date-fns": "3.6.0"
   },
   "devDependencies": {
-    "typescript": "5.6.2",
-    "@types/react": "18.3.7",
-    "@types/node": "20.12.14",
+    "typescript": "5.5.4",
     "eslint": "8.57.0",
-    "eslint-config-next": "14.2.5",
-    "tailwindcss": "3.4.10",
-    "postcss": "8.4.41",
-    "autoprefixer": "10.4.20"
+    "eslint-config-next": "14.2.5"
   }
 }
