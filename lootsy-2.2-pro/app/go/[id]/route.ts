@@ -1,20 +1,21 @@
-import { NextRequest, NextResponse } from 'next/server'
-import dealsLocal from '@/data/deals.json'
-import { supabaseService } from '@/lib/supabase'
+import { NextResponse } from 'next/server'
+import { createClient } from '@supabase/supabase-js'
 
-export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
-  const id = decodeURIComponent(params.id)
-  let deal: any = (dealsLocal as any[]).find(d => String(d.id) === String(id))
+export const runtime = 'edge'
 
-  if (supabaseService) {
-    const { data } = await supabaseService.from('deals').select('*').eq('id', id).single()
-    if (data) deal = data
-  }
+export async function GET(req: Request, { params }: { params: { id: string } }) {
+  const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  const SERVICE_ROLE = process.env.SUPABASE_SERVICE_ROLE_KEY!
+  const supabase = createClient(SUPABASE_URL, SERVICE_ROLE)
 
-  if (deal && supabaseService) {
-    await supabaseService.from('clicks').insert({ deal_id: deal.id, merchant: deal.merchant, url: deal.url })
-  }
+  const { data: deal } = await supabase.from('deals')
+    .select('id,url').eq('id', params.id).single()
 
-  if (!deal) return NextResponse.redirect(new URL('/', process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'))
-  return NextResponse.redirect(deal.url)
+  if (!deal?.url) return NextResponse.redirect(new URL('/', req.url), 302)
+
+  const ip = (req.headers.get('x-forwarded-for') || '').split(',')[0] || null
+  const ua = req.headers.get('user-agent') || null
+  await supabase.from('clicks').insert({ deal_id: deal.id, ip, ua })
+
+  return NextResponse.redirect(deal.url, 302)
 }

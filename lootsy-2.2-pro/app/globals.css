@@ -2,13 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: light dark; }
-.container { max-width: 1100px; }
+:root {
+  --bg: 255 255 255;
+  --fg: 15 23 42;
+}
 
-/* gradient background */
+html, body {
+  height: 100%;
+}
+
 body {
-  @apply bg-white text-gray-900 dark:bg-zinc-950 dark:text-zinc-100;
-  background-image:
-    radial-gradient(1200px 600px at 10% -10%, rgba(59,130,246,0.12), transparent),
-    radial-gradient(800px 400px at 90% 10%, rgba(16,185,129,0.10), transparent);
+  color: rgb(var(--fg));
+  background: rgb(var(--bg));
 }
