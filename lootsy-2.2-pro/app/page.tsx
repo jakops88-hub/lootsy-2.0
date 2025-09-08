@@ -9,11 +9,11 @@ export default function Page() {
         </h1>
         <p className="mt-4 text-lg text-slate-600">
           Lootsy hittar felpriser, dolda deals och rabatter innan någon annan.
-          Bli gratisanvändare eller uppgradera till Premium och få realtidsnotiser.
+          Allt är gratis. Vi tjänar pengar endast via affiliate-länkar – enkelt och transparent.
         </p>
         <div className="mt-6 flex gap-3">
           <Link href="/deals" className="px-4 py-2 rounded-xl bg-black text-white">Visa deals</Link>
-          <Link href="/premium" className="px-4 py-2 rounded-xl border">Uppgradera</Link>
+          
         </div>
         <ul className="mt-8 space-y-2 text-slate-700">
           <li>• Gratis: 5 utvalda deals per dag</li>
