@@ -5,11 +5,11 @@ Tech stack: **Next.js 14 (App Router)**, **Supabase** (DB/Auth/Realtime), **Tail
 
 ## Features
 - Public **Deals feed** with FOMO badges (stock left, time left, trending).
-- **Free vs Premium** gating: free users see top 5 deals, premium gets all.
+- **Affiliate‑only** revenue: alla användare ser alla deals. Inga premiumfunktioner.
 - **Affiliate redirect** (`/api/go/:id`) that counts clicks then redirects.
 - **Admin panel** (server actions) for adding/editing deals.
 - **Bulk import API** (`/api/admin/import`) using `ADMIN_SECRET`.
-- **Stripe Checkout (optional)** for Premium (test-mode ready).
+- **Inga Stripe‑beroenden** – enklare deploy på Vercel.
 - Deploy-friendly for **Vercel**.
 
 ---
@@ -79,3 +79,9 @@ Re-deploy. Done.
 ---
 
 MIT © Lootsy
+
+
+### Vercel tips
+- **Root Directory**: peka på `Lootsy/` mappen när du skapar projektet.
+- **Build Command**: `next build` (auto).
+- **Environment vars**: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `ADMIN_SECRET`, `NEXT_PUBLIC_SITE_URL=https://lootsy.se`.
